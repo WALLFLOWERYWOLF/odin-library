@@ -31,10 +31,10 @@
                   <span class="page-count">295</span>
                 </div>
               </div>
-              <div class="status status-read">Read</div>
+              <div class="status read">Read</div>
             </div>
             <div class="buttons">
-              <button class="status-btn">Mark Unread</button>
+              <button class="status-toggle-btn">Mark Unread</button>
               <button class="remove-btn">Remove</button>
             </div>
           </article>
@@ -48,10 +48,10 @@
                   <span class="page-count">295</span>
                 </div>
               </div>
-              <div class="status status-read">Read</div>
+              <div class="status read">Read</div>
             </div>
             <div class="buttons">
-              <button class="status-btn">Mark Unread</button>
+              <button class="status-toggle-btn">Mark Unread</button>
               <button class="remove-btn">Remove</button>
             </div>
           </article>
@@ -65,10 +65,10 @@
                   <span class="page-count">295</span>
                 </div>
               </div>
-              <div class="status status-read">Read</div>
+              <div class="status read">Read</div>
             </div>
             <div class="buttons">
-              <button class="status-btn">Mark Unread</button>
+              <button class="status-toggle-btn">Mark Unread</button>
               <button class="remove-btn">Remove</button>
             </div>
           </article>
@@ -82,10 +82,10 @@
                   <span class="page-count">295</span>
                 </div>
               </div>
-              <div class="status status-unread">Unread</div>
+              <div class="status unread">Unread</div>
             </div>
             <div class="buttons">
-              <button class="status-btn">Mark Unread</button>
+              <button class="status-toggle-btn">Mark Unread</button>
               <button class="remove-btn">Remove</button>
             </div>
           </article>
@@ -93,7 +93,7 @@
       </section>
     </div>
     <dialog class="dialog">
-      <form action="#">
+      <form id="form" action="#">
         <h2>Add a new book</h2>
         <div>
           <label for="title">Enter Title:</label>
@@ -108,8 +108,8 @@
           <input type="number" id="pages" name="pages" />
         </div>
         <div class="checkbox">
-          <input type="checkbox" id="status" name="status" />
-          <label for="status">Mark as read</label>
+          <input type="checkbox" id="read" name="read" value="true" />
+          <label for="read">Mark as read</label>
         </div>
         <div class="buttons">
           <button type="button" class="cancel">Cancel</button>

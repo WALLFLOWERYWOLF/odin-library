@@ -23,13 +23,13 @@
   --btn-danger-border: #feb2b2;
   --btn-danger-hover-bg: #fed7d7;
 
-  --status-read-bg: #edf7ed;
-  --status-read-text: #1e4620;
-  --status-read-border: #c3e6cb;
+  --read-bg: #edf7ed;
+  --read-text: #1e4620;
+  --read-border: #c3e6cb;
 
-  --status-unread-bg: #f5f5f7;
-  --status-unread-text: #4a4a4d;
-  --status-unread-border: #e1e1e3;
+  --unread-bg: #f5f5f7;
+  --unread-text: #4a4a4d;
+  --unread-border: #e1e1e3;
 }
 
 * {
@@ -142,7 +142,7 @@ button.submit:active {
 
 /* --- SECONDARY BUTTON TIERS --- */
 button.cancel,
-button.status-btn {
+button.status-toggle-btn {
   background-color: var(--btn-secondary-bg);
   color: var(--btn-secondary-text);
   border: 2px solid var(--btn-secondary-border);
@@ -150,7 +150,7 @@ button.status-btn {
 
 /* HOVER: Flips colors completely (Background becomes grey, Text becomes white) */
 button.cancel:hover,
-button.status-btn:hover {
+button.status-toggle-btn:hover {
   background-color: var(--text-muted);
   color: #ffffff;
   border-color: var(--text-muted);
@@ -158,7 +158,7 @@ button.status-btn:hover {
 
 /* ACTIVE: Darkens background fill to deep ink color while held down */
 button.cancel:active,
-button.status-btn:active {
+button.status-toggle-btn:active {
   background-color: var(--text-main);
   border-color: var(--text-main);
   color: #ffffff;
@@ -252,16 +252,16 @@ button.remove-btn:active {
   letter-spacing: 1px;
 }
 
-.status-read {
-  border: 1px solid var(--status-read-border);
-  color: var(--status-read-text);
-  background-color: var(--status-read-bg);
+.read {
+  border: 1px solid var(--read-border);
+  color: var(--read-text);
+  background-color: var(--read-bg);
 }
 
-.status-unread {
-  border: 1px solid var(--status-unread-border);
-  color: var(--status-unread-text);
-  background-color: var(--status-unread-bg);
+.unread {
+  border: 1px solid var(--unread-border);
+  color: var(--unread-text);
+  background-color: var(--unread-bg);
 }
 
 .dialog {

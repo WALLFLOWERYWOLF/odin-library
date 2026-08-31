@@ -35,6 +35,11 @@ const cancel = document.querySelector(".cancel");
 const form = document.querySelector("#form");
 const cardsContainer = document.querySelector(".cards");
 
+const titleInput = document.querySelector("#title");
+const authorInput = document.querySelector("#author");
+const pageCountInput = document.querySelector("#pages");
+const readInput = document.querySelector("#read");
+
 addBookBtn.addEventListener("click", () => {
   dialog.showModal();
 });
@@ -43,6 +48,31 @@ cancel.addEventListener("click", () => {
   dialog.close();
   form.reset();
 });
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  addBookToLibrary();
+  form.reset();
+  dialog.close();
+});
+
+function Book(title, author, pageCount, read) {
+  this.title = title;
+  this.author = author;
+  this.pageCount = Number(pageCount);
+  this.read = read;
+  this.id = crypto.randomUUID();
+}
+
+function addBookToLibrary() {
+  const title = titleInput.value;
+  const author = authorInput.value;
+  const read = readInput.checked;
+  const pageCount = pageCountInput.value;
+  const book = new Book(title, author, pageCount, read);
+  myLibrary.push(book);
+  renderCard(book);
+}
 
 function renderCard(book) {
   const status = book.read ? "Read" : "Unread";

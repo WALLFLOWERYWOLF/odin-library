@@ -56,6 +56,18 @@ form.addEventListener("submit", (event) => {
   dialog.close();
 });
 
+cardsContainer.addEventListener("click", (event) => {
+  const uid = event.target.getAttribute("data-uid");
+  switch (event.target.className) {
+    case "remove-btn":
+      const bookIndex = myLibrary.findIndex((book) => book.id == uid);
+      if (bookIndex !== -1) myLibrary.splice(bookIndex, 1);
+      const card = document.querySelector(`[data-uid="${uid}"]`);
+      card.remove();
+      break;
+  }
+});
+
 function Book(title, author, pageCount, read) {
   this.title = title;
   this.author = author;

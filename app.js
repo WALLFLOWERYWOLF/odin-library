@@ -57,14 +57,30 @@ form.addEventListener("submit", (event) => {
 });
 
 cardsContainer.addEventListener("click", (event) => {
-  const uid = event.target.getAttribute("data-uid");
+  const uid = event.target.closest(".card").getAttribute("data-uid");
+  const bookIndex = myLibrary.findIndex((book) => book.id == uid);
   switch (event.target.className) {
     case "remove-btn":
-      const bookIndex = myLibrary.findIndex((book) => book.id == uid);
       if (bookIndex !== -1) myLibrary.splice(bookIndex, 1);
       const card = document.querySelector(`[data-uid="${uid}"]`);
       card.remove();
       break;
+    case "status-toggle-btn":
+      myLibrary[bookIndex].toggleReadStatus();
+      event.target.textContent = myLibrary[bookIndex].read
+        ? "Mark Unread"
+        : "Mark Read";
+      const bookCard = document.querySelector(`[data-uid="${uid}"]`);
+      const statusDom = bookCard.querySelector(".status");
+      if (myLibrary[bookIndex].read) {
+        statusDom.textContent = "Read";
+        statusDom.classList.remove("unread");
+        statusDom.classList.add("read");
+      } else {
+        statusDom.textContent = "Unread";
+        statusDom.classList.remove("read");
+        statusDom.classList.add("unread");
+      }
   }
 });
 
@@ -129,7 +145,6 @@ function renderCard(book) {
   const removeBtn = document.createElement("button");
   removeBtn.classList.add("remove-btn");
   removeBtn.textContent = "Remove";
-  removeBtn.setAttribute("data-uid", `${book.id}`);
   buttons.appendChild(statusToggleBtn);
   buttons.appendChild(removeBtn);
   bookCard.appendChild(buttons);
@@ -137,6 +152,11 @@ function renderCard(book) {
   cardsContainer.appendChild(bookCard);
 }
 
-myLibrary.map((book) => {
+Book.prototype.toggleReadStatus = function () {
+  this.read = !this.read;
+};
+
+myLibrary.forEach((book) => {
+  Object.setPrototypeOf(book, Book.prototype);
   renderCard(book);
 });

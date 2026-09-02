@@ -115,6 +115,7 @@ function renderCard(book) {
   const title = document.createElement("div");
   title.classList.add("title");
   title.textContent = book.title;
+  title.setAttribute("title", book.title);
   const author = document.createElement("div");
   author.classList.add("author");
   author.textContent = book.author;

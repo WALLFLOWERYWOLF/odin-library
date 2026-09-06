@@ -59,28 +59,26 @@ form.addEventListener("submit", (event) => {
 cardsContainer.addEventListener("click", (event) => {
   const uid = event.target.closest(".card").getAttribute("data-uid");
   const bookIndex = myLibrary.findIndex((book) => book.id == uid);
-  switch (event.target.className) {
-    case "remove-btn":
-      if (bookIndex !== -1) myLibrary.splice(bookIndex, 1);
-      const card = document.querySelector(`[data-uid="${uid}"]`);
-      card.remove();
-      break;
-    case "status-toggle-btn":
-      myLibrary[bookIndex].toggleReadStatus();
-      event.target.textContent = myLibrary[bookIndex].read
-        ? "Mark Unread"
-        : "Mark Read";
-      const bookCard = document.querySelector(`[data-uid="${uid}"]`);
-      const statusDom = bookCard.querySelector(".status");
-      if (myLibrary[bookIndex].read) {
-        statusDom.textContent = "Read";
-        statusDom.classList.remove("unread");
-        statusDom.classList.add("read");
-      } else {
-        statusDom.textContent = "Unread";
-        statusDom.classList.remove("read");
-        statusDom.classList.add("unread");
-      }
+  if (event.target.classList.contains("remove-btn")) {
+    if (bookIndex !== -1) myLibrary.splice(bookIndex, 1);
+    const card = document.querySelector(`[data-uid="${uid}"]`);
+    card.remove();
+  } else if (event.target.classList.contains("status-toggle-btn")) {
+    myLibrary[bookIndex].toggleReadStatus();
+    event.target.textContent = myLibrary[bookIndex].read
+      ? "Mark Unread"
+      : "Mark Read";
+    const bookCard = document.querySelector(`[data-uid="${uid}"]`);
+    const statusDom = bookCard.querySelector(".status");
+    if (myLibrary[bookIndex].read) {
+      statusDom.textContent = "Read";
+      statusDom.classList.remove("unread");
+      statusDom.classList.add("read");
+    } else {
+      statusDom.textContent = "Unread";
+      statusDom.classList.remove("read");
+      statusDom.classList.add("unread");
+    }
   }
 });
 

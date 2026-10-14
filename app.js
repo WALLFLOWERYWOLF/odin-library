@@ -76,12 +76,17 @@ cardsContainer.addEventListener("click", (event) => {
   }
 });
 
-function Book(title, author, pageCount, read) {
-  this.title = title;
-  this.author = author;
-  this.pageCount = Number(pageCount);
-  this.read = read;
-  this.id = crypto.randomUUID();
+class Book {
+  constructor(title, author, pageCount, read) {
+    this.title = title;
+    this.author = author;
+    this.pageCount = Number(pageCount);
+    this.read = read;
+    this.id = crypto.randomUUID();
+  }
+  toggleReadStatus() {
+    this.read = !this.read;
+  }
 }
 
 function addBookToLibrary() {
@@ -144,10 +149,6 @@ function renderCard(book) {
   bookCard.setAttribute("data-uid", `${book.id}`);
   cardsContainer.appendChild(bookCard);
 }
-
-Book.prototype.toggleReadStatus = function () {
-  this.read = !this.read;
-};
 
 myLibrary.forEach((book) => {
   Object.setPrototypeOf(book, Book.prototype);
